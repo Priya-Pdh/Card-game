@@ -2,32 +2,40 @@ import PlayedCard from "../PlayedCard/PlayedCard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import DraggableCard from "../DraggableCard/DraggableCard";
 
 const Board = () => {
     const cards = useSelector((state) => state.game.products)
     //This state represents an array of cards that is on the board. The initial state is the first randomized card always displayed in the beginning
-    const [playedCards, setPlayedCards] = useState([{
-        "id": "1",
-        "name": "Smartphone",
-        "co2": "18kg",
-        "img": "./assets/smartphone.svg"
-    },
-    {
-        "id": "2",
-        "name": "Jeans",
-        "co2": "22kg",
-        "img": "./assets/jeans.svg"
-    },
-    {
-        "id": "3",
-        "name": "Cotton T-shirt",
-        "co2": "6kg",
-        "img": "./assets/"
-    }
-    ]);
+    // const [playedCards, setPlayedCards] = useState([{
+    //     "id": "1",
+    //     "name": "Smartphone",
+    //     "co2": "18kg",
+    //     "img": "./assets/smartphone.svg"
+    // },
+    // {
+    //     "id": "2",
+    //     "name": "Jeans",
+    //     "co2": "22kg",
+    //     "img": "./assets/jeans.svg"
+    // },
+    // {
+    //     "id": "3",
+    //     "name": "Cotton T-shirt",
+    //     "co2": "6kg",
+    //     "img": "./assets/"
+    // }
+    // ]);
+    const[ playedCards, setPlayedCards] = useState(cards)
 
+//setting the initial played card index to random value
+    const [playedCardsIndex, setPlayedCardsIndex] = useState(0);
+
+    useEffect(() => {
+        setPlayedCardsIndex(() => Math.floor(Math.random() * playedCards.length))
+    }, [playedCards])
 
     const handleDragEnd = (event) => {
         //Event to occur when card is released. Tell if it's correct or wrong and sort the cards. The "onDragEnd" provides an event
@@ -74,9 +82,15 @@ const Board = () => {
                         strategy={horizontalListSortingStrategy}
                     >
                         {/* We need components that use the useSortable hook */}
-                        {playedCards.map((card) => (
+                        {/* {playedCards.map((card) => (
                             <PlayedCard key={card.name} card={card} />
-                        ))}
+                        ))} */}
+                        {playedCards.length > 0 && (
+                            <PlayedCard 
+                            key={playedCards[playedCardsIndex].id}
+                            card={playedCards[playedCardsIndex]}
+                            />
+                        )}
                     </SortableContext>
                 </div>
 
