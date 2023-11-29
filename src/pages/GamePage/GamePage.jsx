@@ -45,13 +45,18 @@ const GamePage = () => {
 
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
             {products.length > 0 && (
-              <DraggableCard
-                key={products[currentIndex].id}
-                id={products[currentIndex].id}
-                name={products[currentIndex].name}
-                co2={products[currentIndex].co2}
-                img={products[currentIndex].img}
-              />
+              <>
+               {products[currentIndex].id !== 9 && (
+                 <DraggableCard
+                 key={products[currentIndex].id}
+                 id={products[currentIndex].id}
+                 name={products[currentIndex].name}
+                 co2={products[currentIndex].co2}
+                 img={products[currentIndex].img}
+               />
+               )}
+              </>
+            
             )}
           </div>
           
