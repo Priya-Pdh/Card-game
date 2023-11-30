@@ -66,8 +66,6 @@ const Board = () => {
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
             >
-
-                <h1>GamePage</h1>
                 <div className="card-board">
                     <SortableContext
                         items={playedCards}

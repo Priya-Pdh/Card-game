@@ -12,8 +12,6 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
 }
 
 .card-board {
@@ -26,4 +24,32 @@ body {
   border: 1px solid black;
   padding: 20px;
   margin: 20px;
+}
+
+.draggable {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  color: white;
+}
+
+.droppable {
+  width: 100%;
+  margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  color: white;
+}
+
+.drag_item {
+  padding: 5px 10px;
+  width: 8rem;
+  height: auto;
+  color: black;
+  background-color: white;
 }
