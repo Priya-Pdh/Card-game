@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDraggable, closestCenter } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+import "./DraggableCard.css";
 
 const DraggableCard = ({ id, name, co2, img }) => {
     const { attributes, listeners, setNodeRef, transform, transition } = useDraggable({
@@ -15,14 +16,11 @@ const DraggableCard = ({ id, name, co2, img }) => {
                 transform: CSS.Transform.toString(transform),
                 transition,
                 cursor: 'grab',
-                marginBottom: '10px',
-                border: '2px solid transparent',
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: 'lightblue',
+                
             }}
             {...attributes}
             {...listeners}
+            className='draggable-card'
         >
             <p>{name}</p>
             <p>{co2}</p>

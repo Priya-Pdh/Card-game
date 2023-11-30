@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { DndContext } from '@dnd-kit/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { moveCard } from '../../reducers/game';
 import Board from '../../components/Board/Board';
 import DraggableCard from '../../components/DraggableCard/DraggableCard';
+import "./GamePage.css";
+import BackButton from '../../components/BackButton/BackButton';
 
 const GamePage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.game.products);
@@ -37,12 +37,11 @@ const GamePage = () => {
 
   return (
     <>
+    <div className='game-page'>
+      <BackButton />
       <Board />
       <DndContext onDragEnd={handleDragEnd}>
         <div>
-          <button onClick={() => navigate('/')}>Go Back</button>
-          <h1>GamePage</h1>
-
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
             {products.length > 0 && (
               <>
@@ -63,6 +62,7 @@ const GamePage = () => {
           <button onClick={randomizeCard}>Randomize Card</button>
         </div>
       </DndContext>
+      </div>
     </>
   );
 };

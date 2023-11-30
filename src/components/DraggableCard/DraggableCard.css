@@ -1,0 +1,7 @@
+.draggable-card {
+  background-color: #e6d5b9;
+  margin-bottom: "10px";
+  border: "2px solid transparent";
+  display: "flex";
+  flex-direction: "column";
+}

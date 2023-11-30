@@ -10,11 +10,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
-}
+} */
 
 .card-board {
   display: flex;

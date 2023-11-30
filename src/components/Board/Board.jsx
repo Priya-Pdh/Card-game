@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import DraggableCard from "../DraggableCard/DraggableCard";
+import "./Board.css";
 
 const Board = () => {
   const cards = useSelector((state) => state.game.products);
@@ -76,7 +77,6 @@ const Board = () => {
   return (
     <>
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <h1>GamePage</h1>
         <div className="card-board">
           <SortableContext
             items={playedCards}

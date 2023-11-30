@@ -1,4 +1,5 @@
 import { useNavigate} from "react-router-dom";
+import "./home.css";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -6,10 +7,13 @@ const Home = () => {
        navigate("/gamepage");
     }
   return (
-    <div>
-     <h1>Welcome</h1>
-     <h1>Play and Learn about products impact to environment!</h1>
-     <button onClick={handleNavigation}>Let start</button>
+    <div className="home-container home-page">
+      <section>
+     <h1 className="heading">Welcome to Card Game</h1>
+     <h1 className="heading">Play and Learn about products impact to environment!</h1>
+     <button className="start-button" onClick={handleNavigation}>Let start</button>
+     <p className="instruction-text">CHECKOUT INSTRUCTIONS</p>
+     </section>
     </div>
   )
 }
