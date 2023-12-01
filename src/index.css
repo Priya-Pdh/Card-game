@@ -15,12 +15,15 @@ body {
 }
 
 .card-board {
+
   display: flex;
   flex-direction: row;
   justify-content: center;
+
 }
 
 .card {
+  width: 120px;
   border: 1px solid black;
   padding: 20px;
   margin: 20px;
@@ -37,7 +40,8 @@ body {
 
 .droppable {
   width: 100%;
-  margin-bottom: 100px;
+  height: 250px;
+  margin-bottom: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
