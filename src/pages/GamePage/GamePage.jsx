@@ -192,9 +192,9 @@ const GamePage = () => {
           {bottomCards.map((card, index) => (
             <div
               draggable
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              onTouchStart={(e) => handleTouchStart(e)}
+              onTouchMove={(e) => handleTouchMove(e)}
+              onTouchEnd={(e) => handleTouchEnd (e)}
               id={card.id}
               key={card.id}
               className="bottom-cards card card-container"
