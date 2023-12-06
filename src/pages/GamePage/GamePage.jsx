@@ -59,8 +59,6 @@ const GamePage = () => {
         return smartphoneImage;
       case "../assets/jeans.svg":
         return jeansImage;
-      case "../assets/bicycle.svg":
-        return bicycleImage;
       case "../assets/bus.svg":
         return busImage;
       case "../assets/car.svg":
