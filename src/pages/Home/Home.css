@@ -1,40 +1,45 @@
 .home-page {
-    background: linear-gradient(to left, rgb(0, 178, 202), rgb(125, 207, 182), rgb(140, 226, 200 ));
+  background: linear-gradient(
+    to left,
+    rgb(0, 178, 202),
+    rgb(125, 207, 182),
+    rgb(140, 226, 200)
+  );
 }
 
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .home-container section {
   text-align: center;
 }
 
 .heading {
-    color: #1D4E89;
-    font-weight: 500;
-    font-size: 25px;
+  color: #1d4e89;
+  font-weight: 500;
+  font-size: 25px;
 }
 
 .start-button {
-    background-color: #F79256;
-    color: white;
-    font-weight: 500;
-    font-size: 25px;
-    width: 15rem;
-    height: 5rem;
-    border-radius: 15px;
-    border: none;
-    margin: 5%;
+  background-color: #f79256;
+  color: white;
+  font-weight: 500;
+  font-size: 25px;
+  width: 15rem;
+  height: 5rem;
+  border-radius: 15px;
+  border: none;
+  margin: 5%;
 }
 
 .instruction-text {
-    color: #EA1C00;
-    font-weight: 500;
-    font-size: 25px;
+  color: #ea1c00;
+  font-weight: 500;
+  font-size: 25px;
 }
 .instruction-text:hover {
-    text-decoration: underline ;
+  text-decoration: underline;
 }

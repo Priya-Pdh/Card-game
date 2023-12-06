@@ -8,7 +8,6 @@ const TopCard = ({ card, droppedCard, getImagePath, color }) => {
     id={card.id}
     className="top-container"
     style={{
-      borderLeft: card.id === droppedCard?.id ? "30px dashed black" : "",
       backgroundColor:
         color === "green" ? "green" : color === "red" ? "red" : "",
     }}

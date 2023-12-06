@@ -1,12 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import Lottie from "lottie-react";
+import flag from "../../animations/flag.json";
+
 import { restart } from "../../reducers/game";
 import "./GamePage.css";
 import smartphoneImage from "../../assets/mobile.svg";
 import jeansImage from "../../assets/jeans.svg";
 
 import coffee from "../../assets/coffee.svg";
-import bicycleImage from "../../assets/bicycle.svg";
+import textileBag from "../../assets/bag.svg";
 import busImage from "../../assets/bus.svg";
 import carImage from "../../assets/car.svg";
 import flightImage from "../../assets/flight.svg";
@@ -15,7 +18,7 @@ import vegoImage from "../../assets/vegetarian.svg";
 import sneakersImage from "../../assets/sneakers.svg";
 import tShirtImage from "../../assets/t-shirt.svg";
 import trainImage from "../../assets/train.svg";
-import defaultImage from "../../assets/qmark.svg"; 
+import defaultImage from "../../assets/qmark.svg";
 import TopCard from "../../components/TopCard/TopCard";
 import InvisibleCard from "../../components/InvisibleCard/InvisibleCard";
 import BackButton from "../../components/BackButton/BackButton";
@@ -40,17 +43,21 @@ const GamePage = () => {
   const [topCards, setTopCards] = useState(randomCards.slice(0, 1));
 
   const [draggedCard, setDraggedCard] = useState();
-  const [droppedCard, setDroppedCard] = useState();
-  const [droppedLast, setDroppedLast] = useState(false);
+  const [dropzone, setDropzone] = useState();
 
   const [touchedCard, setTouchedCard] = useState(null);
 
   const [correctPlacedId, setCorrectPlacedId] = useState();
   const [wrongPlacedId, setWrongPlacedId] = useState([]);
   const [correctCount, setCorrectCount] = useState(0);
-  const totalCards = 12; // Total number of cards
+  const totalCards = 10; // Total number of cards
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  //Styles for animation
+  const style = {
+    height: 70,
+  };
 
   // Function to retrieve image path based on card's image
   const getImagePath = (img) => {
@@ -77,6 +84,8 @@ const GamePage = () => {
         return tShirtImage;
       case "../assets/coffee.svg":
         return coffee;
+      case "../assets/bag.svg":
+        return textileBag;
       default:
         return defaultImage;
     }
@@ -89,23 +98,25 @@ const GamePage = () => {
 
     // Set the dragged card and reset dropped indicators
     setDraggedCard(card);
-    setDroppedCard(null);
-    setDroppedLast(false);
+    setTimeout(() => {
+      e.target.style.visibility = "hidden";
+    }, 1);
+    setDropzone();
   };
 
   // Function triggered when dragging over a target
   const handleDragOver = (e) => {
-    // Find the card being dragged over based on the ID
-    const card = topCards.find((card) => card.id == e.target.id);
-
-    // Set the dropped card and update indicators
-    setDroppedCard(card);
-    setDroppedLast(e.target.id == "invisible");
-    e.preventDefault();
+    //Find the card being dragged based on the divs that have a classname called "dropzone"
+    if (e.target.className.includes("dropzone")) {
+      setDropzone(e.target.textContent);
+      e.preventDefault();
+    } else {
+      setDropzone();
+    }
   };
 
   // Function triggered when dragging ends
-  const handleDragEnd = (e) => {
+  const handleDrop = (e) => {
     // Function for delayed sorting after a 2-second delay
     const sortTopCardsWithDelay = (cardsToSort) => {
       // Sorts the cards after a 2-second delay
@@ -128,27 +139,14 @@ const GamePage = () => {
     };
 
     // Check if a card is being dragged and dropped over a target
-    if (draggedCard && (droppedCard || droppedLast)) {
-      let updatedTopCards = [];
-
+    if (draggedCard && dropzone) {
       // Determine the updated list of top cards after dragging ends
-      if (droppedLast) {
-        //setTopCards([...topCards, { ...draggedCard, hidden: false }]);
-        // If dropped at the last position, add the card to the end
-        updatedTopCards = [...topCards, draggedCard];
-        // Update state immediately to display the new card
-        setTopCards(updatedTopCards);
-      } else {
-        // Calculate the index where the card is dropped
-        const i = topCards.indexOf(droppedCard);
-        updatedTopCards = [
-          ...topCards.slice(0, i),
-          { ...draggedCard, hidden: false },
-          ...topCards.slice(i),
-        ];
-        // Update state immediately to display the new card
-        setTopCards(updatedTopCards);
-      }
+      let updatedTopCards = [
+        ...topCards.slice(0, dropzone),
+        draggedCard,
+        ...topCards.slice(dropzone),
+      ];
+      setTopCards(updatedTopCards);
 
       // Initiate sorting of top cards after a delay
       const sortedCards = sortTopCardsWithDelay(updatedTopCards);
@@ -170,7 +168,7 @@ const GamePage = () => {
     }
     // Reset dragged and dropped cards
     setDraggedCard(null);
-    setDroppedCard(null);
+    setDropzone();
   };
 
   // for mobile version
@@ -185,7 +183,7 @@ const GamePage = () => {
   };
 
   const handleTouchEnd = (e) => {
-    handleDragEnd(e.changedTouches[0]);
+    handleDrop(e.changedTouches[0]);
     setTouchedCard(null);
   };
 
@@ -193,6 +191,13 @@ const GamePage = () => {
     dispatch(restart());
     setBottomCards(randomCards.slice(1, 10)); // Reset the bottom cards
     setTopCards(randomCards.slice(0, 1)); // Reset the top cards
+    setDraggedCard(null);
+    setDropzone();
+    setTouchedCard(null); // Reset touched card
+    setCorrectPlacedId(null); // Reset correct placed ID
+    setWrongPlacedId([]); // Reset wrong placed IDs
+    setCorrectCount(0); // Reset correct count
+    setIsOpenModal(false); // Close the modal if open
   };
 
   return (
@@ -200,24 +205,23 @@ const GamePage = () => {
       <BackButton />
       <div className="top-section">
         <p className="top-item item-color">{t('low_emission')}</p>
-        <p className="top-item score-color">
-          {t('score')} 🏁 <span>{`${correctCount}/${totalCards}`}</span>
-        </p>
 
-        {isOpenModal && (
-          <Modal
-            setIsOpen={setIsOpenModal}
-            correctCount={correctCount}
-            totalCards={totalCards}
-          />
-        )}
+        <p
+          className="top-item score-color score"
+          style={{ alignItems: "center", margin: "0" }}
+        >
+          {t('score')} <Lottie animationData={flag} style={style} />{" "}
+          <span
+            style={{ alignSelf: "center" }}
+          >{`${correctCount}/${totalCards}`}</span>
+        </p>
         <p className="top-item item-color">{t('high_emission')}</p>
       </div>
       <hr className="horizontal-line" />
       <div
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
-        onDragEnd={handleDragEnd}
+        onDrop={handleDrop}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -226,65 +230,86 @@ const GamePage = () => {
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "20px",
             justifyContent: "center",
           }}
           className="board-container"
         >
-          {topCards.map((card) => (
-            <TopCard
-              key={card.id}
-              card={card}
-              droppedCard={droppedCard}
-              getImagePath={getImagePath}
-              color={
-                card.id == correctPlacedId
-                  ? "green"
-                  : card.id == wrongPlacedId
-                  ? "red"
-                  : "default"
-              }
-            />
+          {topCards.map((card, index) => (
+            <>
+              <div
+                className={`dropzone ${dropzone == index ? "selected" : ""}`}
+              >
+                {index}
+              </div>
+              <TopCard
+                key={card.id}
+                card={card}
+                getImagePath={getImagePath}
+                color={
+                  card.id == correctPlacedId
+                    ? "green"
+                    : card.id == wrongPlacedId
+                      ? "red"
+                      : "default"
+                }
+              />
+            </>
           ))}
-          <InvisibleCard droppedLast={droppedLast} />
+          <div
+            className={`dropzone ${topCards.length == dropzone ? "selected" : ""
+              }`}
+          >
+            {topCards.length}
+          </div>
         </div>
-        <div style={{ position: "relative", margin: "5% 0 0 45%" }}>
-          {bottomCards.map((card, index) => (
-             
-            <div
-              draggable
-              id={card.id}
-              key={card.id}
-              className="bottom-cards card card-container"
-              style={{
-                // opacity:
-                //   card.id == draggedCard?.id || card.id === touchedCard
-                //     ? 0.2
-                //     : 1.0,
-                position: "absolute",
-                left: `${index * 5}px`,
-                top: `${index * 5}px`,
-              }}
-            >
-              <p className="card-heading">{t(card.name)}</p>
-              <img draggable={false} src={getImagePath(card.img)} />
+        <div className="bottom-container">
+          <div className="deck-container">
+            {bottomCards.map((card, index) => (
+              <div
+                draggable
+                id={card.id}
+                key={card.id}
+                className="bottom-cards card-container"
+                style={{
+                  position: "absolute",
+                  marginLeft: `${index * 5}px`,
+                  marginTop: `${index * 5}px`,
+                }}
+              >
+                <p className="card-heading">{t(card.name)}</p>
+                <img draggable={false} src={getImagePath(card.img)} />
 
-              {card.hidden ? (
-                <p className="card-text">
-                  CO₂ <span>?</span>
-                </p>
-              ) : (
-                <p className="card-text">{card.co2}</p>
-              )}
-            </div>
-          ))}
+                {card.hidden ? (
+                  <p className="card-text">
+                    CO₂ <span>?</span>
+                  </p>
+                ) : (
+                  <p className="card-text">{card.co2}</p>
+                )}
+              </div>
+            ))}
+          </div>
           {bottomCards.length === 0 && (
             <button className="restartBtn" onClick={handleRestart}>
              {t('restart')}
             </button>
           )}
+          <div className="description-container">
+            {bottomCards.map((card) => (
+              <div key={card.id} className="description-box">
+                <p className="description">{t(card.description)}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      {isOpenModal && (
+        <Modal
+          setIsOpen={setIsOpenModal}
+          correctCount={correctCount}
+          totalCards={totalCards}
+        />
+      )}
     </div>
   );
 };

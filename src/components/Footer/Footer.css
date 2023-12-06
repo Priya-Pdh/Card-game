@@ -1,13 +1,17 @@
 .footer-item {
-    text-decoration: none;
+  text-decoration: none;
 }
 .footer-item:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 footer {
-    position: fixed;
-    bottom: 0;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-  }
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+footer a {
+  color: #ea1c00;
+}

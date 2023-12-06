@@ -8,6 +8,7 @@ const products = [
     img: "../assets/smartphone.svg",
     hidden: true,
     description: "des_smartphone",
+
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const products = [
     img: "../assets/jeans.svg",
     hidden: true,
     description: "des_jeans",
+
   },
   {
     id: 3,
@@ -50,12 +52,21 @@ const products = [
     description: "des_air",
   },
   {
+    id: 6,
+    name: "Air travel",
+    co2: 150,
+    img: "../assets/flight.svg",
+    hidden: true,
+    description: "des_air",
+  },
+  {
     id: 7,
     name: "travel_by_bus",
     co2: 0.2,
     img: "../assets/bus.svg",
     hidden: true,
     description: "des_bus",
+
   },
   {
     id: 8,
@@ -72,6 +83,7 @@ const products = [
     img: "../assets/car.svg",
     hidden: true,
     description: "des_car",
+
   },
   {
     id: 10,
@@ -80,6 +92,7 @@ const products = [
     img: "../assets/coffee.svg",
     hidden: true,
     description: "des_coffee",
+
   },
   {
     id: 11,

@@ -1,9 +1,8 @@
 nav {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 2%;
 }
-
 .lang_switcher {
   width: 100px;
   height: 40px;
@@ -17,3 +16,4 @@ nav {
 .lang_switcher:hover {
     background-color:  lightgray;
   }
+

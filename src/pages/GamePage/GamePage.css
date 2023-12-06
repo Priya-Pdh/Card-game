@@ -13,11 +13,15 @@ body {
 
 .top-item {
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .item-color {
   color: #1d4e89;
+}
+
+.score {
+  display: flex;
 }
 
 .score-color {
@@ -84,6 +88,25 @@ body {
   max-width: 100%;
 }
 
+/* Dropzone */
+.dropzone {
+  width: 20px;
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scaleX(5);
+  opacity: 0;
+}
+
+.dropzone.selected {
+  width: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transform: scaleX(1);
+  opacity: 0.5;
+}
+
 /* MODAL */
 .restartBtn {
   margin: 20px 10px;
@@ -101,4 +124,47 @@ body {
 .primaryBtn:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
+}
+
+.bottom-container {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  gap: 250px;
+}
+
+.description-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.description-box {
+  background-color: white;
+  height: 210px;
+  width: 170px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  hyphens: auto;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .top-item {
+    font-size: 15px;
+  }
+
+  .bottom-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
