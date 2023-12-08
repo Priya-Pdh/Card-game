@@ -164,6 +164,8 @@ body {
   font-size: 16px;
   color: #1d4e89;
   hyphens: auto;
+ text-align: center;
+
 }
 
 .dragged:hover {
@@ -191,19 +193,18 @@ body {
 }
 
 
-@media (min-width: 280px) and (max-width: 653px) {
+@media (max-width: 280px)  {
 
   .card_and_description_container {
     width: 100%;
   }
-
+  .flag {
+    display: none;
+  }
 
 }
 
-@media only screen and (max-width: 768px) {
-  .top-item {
-    font-size: 12px;
-  }
+@media only screen and (max-width: 767px) {
 
   .top-section {
     margin-top: 25px;
@@ -211,8 +212,8 @@ body {
 
   .card-container {
     border: 1px solid black;
-    width: 50px;
-    height: 100px;
+    width: 45px;
+    height: 80px;
     border-style: solid none none solid;
     border-color: gray;
     box-shadow: -1px -1px 3px lightgray;
@@ -220,7 +221,7 @@ body {
   }
 
   .card-container img {
-    width: 65%;
+    width: 75%;
     margin-top: 7%;
   }
 
@@ -231,41 +232,46 @@ body {
   }
 
   .card-heading {
-    margin-top: 1.5rem;
+    margin-top: 1.7rem;
     margin-left: 10%;
   }
 
   .card-heading,
   .card-text {
-    font-size: 12px;
+    font-size: 8px;
   }
 
   .card-text span {
     font-size: 25px;
   }
-
+.carbon {
+  margin: 0;
+}
   .bottom-container {
     display: flex;
     margin-left: 45%;
     width: 10%;
+    gap: 130px;
   }
 
   .description-box {
-    width: 70px;
-    height: 80px;
+    width: 50px;
+    height: 62px;
     padding: 10px;
     margin-top: 32px;
   }
 
   .description {
-    font-size: 10px;
+    font-size: 8px;
+    
+  }
+
+  .top-description-box {
+    margin-top: 1px;
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  .top-item {
-    font-size: 10px;
-  }
+@media (min-width: 768px) and (max-width: 1024px) {
 
   .top-section {
     margin-top: 40px;
@@ -309,7 +315,8 @@ body {
   }
 
   .description {
-    font-size: 5px;
+    font-size: 8px;
+    overflow: hidden;
   }
 }
 

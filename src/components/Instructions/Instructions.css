@@ -40,7 +40,7 @@ li {
   font-size: 18px;
 }
 
-p {
+.note {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -65,7 +65,7 @@ p {
   li {
     font-size: 12px; 
   }
-  p {
+  .note {
 
     font-size: 12px;
   
@@ -88,7 +88,7 @@ p {
   li {
     font-size: 14px; 
   }
-  p {
+  .note {
     
     font-size: 12px;
    margin: 10px;
@@ -112,7 +112,7 @@ p {
   li {
     font-size: 16px; 
   }
-  p {
+  .note {
     
     font-size: 16px;
    margin: 10px;
@@ -131,13 +131,7 @@ p {
   }
   
 }
-@media (min-width: 414px) and (max-width: 896px) {
 
-  
-}
-@media (min-width: 430px) and (max-width: 932px) {
-  
-}
 @media (min-width: 540px) and (max-width: 720px) {
   .instructions {
     height: 35rem;
@@ -158,7 +152,7 @@ p {
   li {
     font-size: 18px; 
   }
-  p {
+  .note {
     
     font-size: 18px;
    margin: 20px;
@@ -179,7 +173,7 @@ p {
   li {
     font-size: 22px; 
   }
-  p {
+  .note {
     
     font-size: 22px;
    margin: 20px;
@@ -203,7 +197,7 @@ p {
   li {
     font-size: 26px; 
   }
-  p {
+  .note {
     
     font-size: 26px;
    margin: 20px;

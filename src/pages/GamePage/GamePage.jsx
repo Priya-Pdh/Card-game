@@ -192,7 +192,7 @@ const GamePage = () => {
           className="top-item score-color score"
           style={{ alignItems: "center", margin: "0" }}
         >
-          {t("score")} <Lottie animationData={flag} style={style} />{" "}
+          {t("score")} <Lottie animationData={flag} style={style} className="flag" />{" "}
           <span
             style={{ alignSelf: "center" }}
           >{`${correctCount}/${totalCards}`}</span>
@@ -246,7 +246,7 @@ const GamePage = () => {
               {showDescription && (
                 <div className="description-container">
                   {topCards.map((card) => (
-                    <div key={card.id} className="description-box">
+                    <div key={card.id} className="description-box top-description-box">
                       <p className="description">{t(card.description)}</p>
                     </div>
                   ))}
@@ -289,7 +289,7 @@ const GamePage = () => {
                       CO₂ <span>?</span>
                     </p>
                   ) : (
-                    <p className="card-text">{card.co2}</p>
+                    <p className="card-text carbon">{card.co2}</p>
                   )}
                 </div>
               ))}

@@ -14,9 +14,9 @@ const TopCard = ({ card, color }) => {
         color === "green" ? "green" : color === "red" ? "red" : "",
     }}
   >
-    <p className="card-heading">{t(card.name)}</p>
+    <p className="top-card-heading">{t(card.name)}</p>
     <img className="top-image" draggable={false} src={getImagePath(card.img)} alt={card.name} />
-    <p className="card-text">{card.co2} kg</p>
+    <p className="top-card-text">{card.co2} kg</p>
   </div>
 
  ) 

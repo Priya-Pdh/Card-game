@@ -25,31 +25,34 @@
 .top-container * {
   pointer-events: none;
 }
+.top-card-heading {
+  text-align: center;
+}
 
 /* .top-container:hover {
   background-color: #e0e0e0;
 
 } */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .top-container {
-    width: 50px;
-    height: 100px;
+    width: 45px;
+    height: 80px;
   }
-  .card-heading, .card-text {
-    margin-top: 10px;
-    font-size: 10px;
+  .top-card-heading, .top-card-text {
+    margin-top: 8px;
+    font-size: 8px;
   }
   .top-image {
-    width: 35%;
+    width: 75%;
   }
 }
-@media only screen and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
 
   .top-container {
-    width: 40px;
-   height: 65px;
+    width: 50px;
+   height: 85px;
   }
-  .card-heading, .card-text {
+  .top-card-heading, .top-card-text {
     font-size: 8px;
     font-weight: 400;
   }

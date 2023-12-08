@@ -1,8 +1,3 @@
-/* .languages {
-  display: flex;
-  justify-content: flex-start;
-  margin: 1.5%;
-} */
 nav {
   position: absolute;
   right: 30px;
@@ -18,6 +13,7 @@ nav {
   color:  #1d4e89;
   font-weight: 650;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #FEF7FF;
 }
 
 .lang_switcher:hover {

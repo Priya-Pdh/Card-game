@@ -26,7 +26,7 @@ const Instructions = () => {
           {t('step_3')}
           </li>
         </ol>
-        <p>
+        <p className="note">
         {t('note')}
         </p>
         <button className="start-button" onClick={playGame}>
