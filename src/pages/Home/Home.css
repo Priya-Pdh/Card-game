@@ -24,7 +24,7 @@
 }
 
 .start-button {
-  background-color: #f79256;
+  background-color: #1d4e89;
   color: white;
   font-weight: 500;
   font-size: 25px;
@@ -34,9 +34,9 @@
   border: none;
   margin: 5%;
 }
-/* .start-button:hover {
-  background-color: #ef9c6a;
-} */
+.start-button:hover {
+  background-color: #2A5487;
+}
 
 .instruction-info {
   color: #ea1c00;

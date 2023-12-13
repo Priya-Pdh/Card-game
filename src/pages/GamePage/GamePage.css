@@ -121,8 +121,12 @@ body {
   font-size: 0.8rem;
   border: none;
   color: white;
-  background: #f79256;
+  background: #1d4e89;
   transition: all 0.25s ease;
+}
+
+.restart:hover {
+  background-color: #2A5487;
 }
 
 .primaryBtn:hover {
